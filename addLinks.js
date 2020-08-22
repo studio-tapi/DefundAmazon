@@ -26,6 +26,12 @@ if (titleElement) {
 		}
 	}
 	
+	function sanitize(text) {
+		var element = document.createElement('div');
+		element.innerText = text;
+		return element.innerHTML;
+	}
+	
 	function render(subject) {
 		if (alternatives[subject]) {
 			for (let alternative in alternatives[subject]) {
@@ -37,9 +43,12 @@ if (titleElement) {
 						.insertAdjacentHTML(
 							'beforebegin',
 							template
-								.replace('{{category}}', category)
-								.replace('{{link}}', alternatives[subject][alternative].replace('{{query}}', query))
-								.replace('{{label}}', 'Search ' + alternative)
+								.replace('{{category}}', sanitize(category))
+								.replace(
+									'{{link}}',
+									alternatives[subject][alternative].replace('{{query}}', sanitize(query))
+								)
+								.replace('{{label}}', 'Search ' + sanitize(alternative))
 						);
 				}
 			}
