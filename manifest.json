@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+  "name": "Defund Amazon",
+  "description": "Adds links to other places you could buy stuff into amazon store listings becausee Jeff Bezos is awful.",
+  "homepage_url": "https://github.com/studio-tapi/DefundAmazon",
+  "version": "1.0",
+  "icons": {
+    "48": "icons/icon.png",
+    "96": "icons/icon@2x.png"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.amazon.com/*"],
+      "js": ["./alternatives.js", "./addLinks.js"]
+    }
+  ]
+}
